@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 120,
+  "editor.tabSize": 2,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "none",
+  "prettier.arrowParens": "avoid",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ddb23f",
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveBackground": "#ddb23f",
+    "titleBar.inactiveForeground": "#aaa"
+  },
+  "workbench.tree.indent": 16
+}
