@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Photos } from "./Photos";
 
 var toCamelCase = function (str) {
@@ -16,10 +16,17 @@ export const Album = ({ album }) => {
       .then(response => response.json())
       .then(json => setPhotos(json));
   };
+  useEffect(() => {
+    if (album.id < 10) loadPhotos();
+  }, []);
   return (
     <div className="album">
       <h1>Name: {toCamelCase(album.title)}</h1>
-      {!photos && <button onClick={loadPhotos}>Show Photos</button>}
+      {!photos && (
+        <button data-cy={"loadPhotos"} onClick={loadPhotos}>
+          Show Photos
+        </button>
+      )}
       {photos && <Photos photos={photos} />}
     </div>
   );
