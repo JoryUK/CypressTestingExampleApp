@@ -9,7 +9,7 @@ describe("With a fresh cache", () => {
     });
   });
 
-  it("Many assertions are not necessary", () => {
+  it("Testing the final result is clean but will fail on empty cache", () => {
     cy.visit("/");
 
     cy.get('[alt="accusamus beatae ad facilis cum similique qui sunt"]').should($img => {
@@ -18,7 +18,7 @@ describe("With a fresh cache", () => {
     });
   });
 
-  it("Tests will sometimes pass if the code runs fast enough", () => {
+  it("Tests should pass more reliably the more things that are asserted", () => {
     cy.visit("/");
 
     cy.get('[alt="accusamus beatae ad facilis cum similique qui sunt"]')

@@ -1,56 +1,9 @@
 const { expect } = require("chai");
 
-describe("Flow of Control", () => {
+describe("Waiting", () => {
   beforeEach(() => {
     cy.server();
   });
-
-  it("Uses a mixture promises and synchronous library methods", () => {
-    cy.visit("/").then(() => {
-      cy.log("1");
-    });
-    cy.log("2");
-    cy.get(".album")
-      .should("exist")
-      .then(() => {
-        cy.log("3");
-      });
-    cy.log("4");
-    cy.wait(50).then(() => {
-      cy.log("5");
-    });
-    cy.log("6");
-  });
-
-  it("Either use 'then' often/always", () => {
-    cy.visit("/").then(() => {
-      cy.log("1");
-      cy.log("2");
-      cy.get(".album")
-        .should("exist")
-        .then(() => {
-          cy.log("3");
-          cy.log("4");
-          cy.wait(50).then(() => {
-            cy.log("5");
-            cy.log("6");
-          });
-        });
-    });
-  });
-
-  it("or avoid it, depending upon style, ", () => {
-    cy.visit("/");
-    cy.log("1");
-    cy.log("2");
-    cy.get(".album").should("exist");
-    cy.log("3");
-    cy.log("4");
-    cy.wait(50);
-    cy.log("5");
-    cy.log("6");
-  });
-
   it("You can write a very simple and effect test with default functionality", () => {
     cy.visit("/");
     cy.get(".album").should("exist");
@@ -69,7 +22,6 @@ describe("Flow of Control", () => {
 
   it("But waiting is also unreliable, and enforces a minimum run time for the test, it is much better to use an alias", () => {
     cy.route("GET", /albums/).as("fetch-all-albums-for-demo");
-
     cy.visit("/");
     cy.wait("@fetch-all-albums-for-demo");
     cy.get(".album", { timeout: 10 }).should("exist");
