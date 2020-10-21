@@ -6,7 +6,7 @@ describe("Flow of Control", () => {
   });
 
   it("Uses a mixture promises and synchronous library methods", () => {
-    cy.visit("/").then(() => {
+    cy.visit("/albums").then(() => {
       cy.log("1");
     });
     cy.log("2");
@@ -23,7 +23,7 @@ describe("Flow of Control", () => {
   });
 
   it("Either use 'then' often/always", () => {
-    cy.visit("/").then(() => {
+    cy.visit("/albums").then(() => {
       cy.log("1");
       cy.log("2");
       cy.get(".album")
@@ -40,7 +40,7 @@ describe("Flow of Control", () => {
   });
 
   it("or avoid it, depending upon style, ", () => {
-    cy.visit("/");
+    cy.visit("/albums");
     cy.log("1");
     cy.log("2");
     cy.get(".album").should("exist");

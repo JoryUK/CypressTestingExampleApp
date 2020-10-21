@@ -10,7 +10,7 @@ describe("With a fresh cache", () => {
   });
 
   it("Testing the final result is clean but will fail on empty cache", () => {
-    cy.visit("/");
+    cy.visit("/albums");
 
     cy.get('[alt="accusamus beatae ad facilis cum similique qui sunt"]').should($img => {
       // "naturalWidth" and "naturalHeight" are set when the image loads
@@ -19,7 +19,7 @@ describe("With a fresh cache", () => {
   });
 
   it("Tests should pass more reliably the more things that are asserted", () => {
-    cy.visit("/");
+    cy.visit("/albums");
 
     cy.get('[alt="accusamus beatae ad facilis cum similique qui sunt"]')
       .should("be.visible")
