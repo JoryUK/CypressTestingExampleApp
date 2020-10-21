@@ -1,5 +1,3 @@
-const { expect } = require("chai");
-
 describe("ToDos Tests - Poorly Written", () => {
   beforeEach(() => {
     cy.server();

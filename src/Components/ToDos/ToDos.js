@@ -13,16 +13,17 @@ const TodoForm = ({ addTodo }) => {
     input.value = "";
   };
   return (
-    <div className="todo-form">
+    <div className="todo-form" data-cy="todo-form">
       <input
+        data-cy="todo-input"
         ref={node => {
           input = node;
         }}
       />
-      <button className="todo-add" onClick={doAdd}>
+      <button className="todo-add" data-cy="todo-add" onClick={doAdd}>
         +
       </button>
-      <button className="todo-addAndClear" onClick={doAddAndClear}>
+      <button className="todo-addAndClear" data-cy="todo-addAndClear" onClick={doAddAndClear}>
         +/C
       </button>
     </div>
@@ -36,9 +37,9 @@ const Todo = ({ todo, remove }) => {
   };
   // Each Todo
   return (
-    <li className="todo">
+    <li className="todo" data-cy="todo">
       {todo.text}
-      <a href="{#}" className="todo-remove" onClick={doRemove}>
+      <a href="{#}" className="todo-remove" data-cy="todo-remove" onClick={doRemove}>
         remove
       </a>
     </li>
@@ -82,7 +83,7 @@ export const ToDos = () => {
 
   // Render JSX
   return (
-    <div className="todo-list">
+    <div className="todo-list" data-cy="todo-list">
       <h1>To Do Application</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList todos={toDos} remove={handleRemove} />
