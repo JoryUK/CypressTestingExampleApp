@@ -18,6 +18,7 @@ export const Album = ({ album }) => {
   };
   useEffect(() => {
     if (album.id < 10) loadPhotos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="album">

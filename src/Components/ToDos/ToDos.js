@@ -1,31 +1,55 @@
+import { Box, Button, Grid, IconButton, InputBase } from "@material-ui/core";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import QueueIcon from "@material-ui/icons/Queue";
+import SendIcon from "@material-ui/icons/Send";
+import { AlertTitle } from "@material-ui/lab";
+import Alert from "@material-ui/lab/Alert";
 import React, { useState } from "react";
+import styles from "./ToDos.module.css";
 
 const TodoForm = ({ addTodo }) => {
-  // Input tracker
-  let input;
+  const [value, setValue] = React.useState("");
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
   const doAdd = () => {
-    if (input.value) {
-      addTodo(input.value);
+    if (value) {
+      addTodo(value);
     }
   };
   const doAddAndClear = () => {
     doAdd();
-    input.value = "";
+    setValue("");
   };
   return (
-    <div className="todo-form" data-cy="todo-form">
-      <input
-        data-cy="todo-input"
-        ref={node => {
-          input = node;
-        }}
-      />
-      <button className="todo-add" data-cy="todo-add" onClick={doAdd}>
-        +
-      </button>
-      <button className="todo-addAndClear" data-cy="todo-addAndClear" onClick={doAddAndClear}>
-        +/C
-      </button>
+    <div className={styles.form}>
+      <Grid container spacing={3} data-cy="todo-form">
+        <Grid item xs={8} className={styles.addBar}>
+          <SendIcon className={styles.icon} />
+          <InputBase
+            className={styles.input}
+            placeholder="Type To Do Text"
+            inputProps={{ "aria-label": "search" }}
+            data-cy="todo-input"
+            onChange={handleChange}
+            value={value}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Box component="span" m={1}>
+            <Button variant="contained" color="primary" data-cy="todo-add" onClick={doAdd}>
+              <AddBoxIcon />
+            </Button>
+          </Box>
+          <Box component="span" m={1}>
+            <Button variant="contained" color="secondary" data-cy="todo-addAndClear" onClick={doAddAndClear}>
+              <QueueIcon />
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 };
@@ -37,12 +61,18 @@ const Todo = ({ todo, remove }) => {
   };
   // Each Todo
   return (
-    <li className="todo" data-cy="todo">
-      {todo.text}
-      <a href="{#}" className="todo-remove" data-cy="todo-remove" onClick={doRemove}>
-        remove
-      </a>
-    </li>
+    <div className={styles.item} data-cy="todo">
+      <Alert
+        severity="info"
+        action={
+          <IconButton aria-label="close" color="inherit" size="small" onClick={doRemove} data-cy="todo-remove">
+            <DeleteForeverIcon fontSize="inherit" />
+          </IconButton>
+        }
+      >
+        <AlertTitle>{todo.text}</AlertTitle>
+      </Alert>
+    </div>
   );
 };
 
@@ -51,7 +81,7 @@ const TodoList = ({ todos, remove }) => {
   const todoNode = todos.map(todo => {
     return <Todo todo={todo} key={todo.key} remove={remove} />;
   });
-  return <ul>{todoNode}</ul>;
+  return <Box m={1}>{todoNode}</Box>;
 };
 
 export const ToDos = () => {

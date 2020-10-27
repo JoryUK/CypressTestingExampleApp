@@ -1,29 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Albums } from "./Components/Albums/Albums";
+import { MainMenu } from "./Components/Shared/Menu";
 import { ToDos } from "./Components/ToDos/ToDos";
 
 export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/albums">Albums</Link>
-            </li>
-            <li>
-              <Link to="/todos">Todo</Link>
-            </li>
-          </ul>
-        </nav>
+        <MainMenu />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/albums">
             <Albums />
@@ -32,14 +19,10 @@ export default function App() {
             <ToDos />
           </Route>
           <Route path="/">
-            <Home />
+            <h2>Home</h2>
           </Route>
         </Switch>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }

@@ -9,7 +9,7 @@ describe("Waiting", () => {
     cy.get(".album").should("exist");
   });
 
-  it("Be aware when you do a get, Cypress will retry until it times out", () => {
+  it("Cypress will timeout if the element is not available quickly enough, based on a retry timeout", () => {
     cy.visit("/albums");
     cy.get(".album", { timeout: 10 }).should("exist");
   });

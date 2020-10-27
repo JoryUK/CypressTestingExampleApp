@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Album } from "./Album";
 
+/*
 const loadAlbumData = setAlbums => {
   return () => {
     console.log("Loading Albums Data");
@@ -13,7 +14,7 @@ const loadAlbumData = setAlbums => {
     });
     http.send();
   };
-};
+};*/
 
 const fetchAlbumData = setAlbums => {
   return () => {
