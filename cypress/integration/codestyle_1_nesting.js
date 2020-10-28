@@ -1,5 +1,4 @@
-const { expect } = require("chai");
-
+/* eslint-disable no-undef */
 describe("Flow of Control", () => {
   beforeEach(() => {
     cy.server();

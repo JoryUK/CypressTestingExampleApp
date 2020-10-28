@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("ToDos Tests - Poorly Written", () => {
   beforeEach(() => {
     cy.server();

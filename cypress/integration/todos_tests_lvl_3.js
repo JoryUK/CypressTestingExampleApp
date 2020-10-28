@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const element = {
   todo: "[data-cy=todo]",
   add: "[data-cy=todo-add]",
