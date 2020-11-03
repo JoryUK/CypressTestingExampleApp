@@ -6,6 +6,16 @@ describe("Waiting", () => {
   it("You can write a very simple and effect test with default functionality", () => {
     cy.visit("/albums");
     cy.get(".album").should("exist");
+
+    cy.get(".album").then(album => {
+      cy.wrap(album).get(".photo").should("exist");
+    });
+
+    cy.get(".album")
+      .should("exist")
+      .then(album => {
+        cy.wrap(album).get(".photo").should("exist");
+      });
   });
 
   it("Cypress will timeout if the element is not available quickly enough, based on a retry timeout", () => {
