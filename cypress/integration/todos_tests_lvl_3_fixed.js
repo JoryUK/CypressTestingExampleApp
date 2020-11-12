@@ -3,7 +3,7 @@ const element = {
   todo: "[data-cy=todo]",
   add: "[data-cy=todo-add]",
   addAndClear: "[data-cy=todo-addAndClear]",
-  input: "[data-cy=todo-input]",
+  input: "[data-cy=todo-input] input",
   remove: "[data-cy=todo-remove]"
 };
 
@@ -98,12 +98,10 @@ describe("ToDos Tests - Poorly Written", () => {
 
     cy.goToDo(testArray);
 
-    cy.get(element.todo)
-      .contains(testArray[0])
-      .should("exist")
-      .within(() => {
-        cy.get(element.remove).click();
-      });
+    cy.get(element.todo).contains(testArray[0]).should("exist");
+    cy.get(element.todo + ":first").within(() => {
+      cy.get(element.remove).click();
+    });
     cy.get(element.todo).should("have.length", 2);
     cy.get(element.todo).contains(testArray[0]).should("not.exist");
     for (let index = 1; index < testArray.length; index++) {
