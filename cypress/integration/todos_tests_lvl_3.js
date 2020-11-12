@@ -31,15 +31,13 @@ describe("ToDos Tests - Poorly Written", () => {
 
   it("Should display todos", () => {
     const testArray = ["Test Text", "Testing Words", "Testing Sentence", "Some Other Test"];
-    for (let index = 0; index < 20; index++) {
-      testArray.push("Test Item: " + index);
-    }
     cy.goToDo(testArray);
 
     cy.get(element.todo).should("have.length", testArray.length);
-    for (const test of testArray) {
-      cy.get(element.todo).contains(test).should("exist");
-    }
+    cy.get(element.todo).contains(testArray[0]).should("exist");
+    cy.get(element.todo).contains(testArray[1]).should("exist");
+    cy.get(element.todo).contains(testArray[2]).should("exist");
+    cy.get(element.todo).contains(testArray[3]).should("exist");
   });
 
   it("Should allow not allow create of empty todo", () => {
@@ -106,8 +104,7 @@ describe("ToDos Tests - Poorly Written", () => {
       });
     cy.get(element.todo).should("have.length", 2);
     cy.get(element.todo).contains(testArray[0]).should("not.exist");
-    for (let index = 1; index < testArray.length; index++) {
-      cy.get(element.todo).contains(testArray[index]).should("exist");
-    }
+    cy.get(element.todo).contains(testArray[1]).should("exist");
+    cy.get(element.todo).contains(testArray[2]).should("exist");
   });
 });
